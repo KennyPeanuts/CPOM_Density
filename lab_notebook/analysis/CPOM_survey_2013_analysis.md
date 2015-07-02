@@ -26,6 +26,28 @@
 
 ### Analysis
 
+Dates of samples
+
+    with(survey, tapply(date, lake, unique))
+
+~~~~
+
+$DP
+[1] "5/13/13"
+
+$LPP
+[1] "3/20/13"
+
+$WC
+[1] "5/14/13"
+
+$WL
+[1] "2/20/13" "2/27/13" "6/14/13"
+
+~~~~
+
+    with(survey, tapply(depth, location, summary))
+
 #### Density of CPOM in all samples
 
     summary(survey$CPOM.AFDM)
