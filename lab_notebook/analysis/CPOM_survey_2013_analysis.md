@@ -38,6 +38,16 @@
 ~~~~
 
     par(las = 1)
+    plot(jitter(rep(1, length(survey$CPOM.AFDM)), 3) ,survey$CPOM.AFDM, xlim = c(0.5, 1.5), axes = F, ylab = "CPOM Density (g AFDM/m^2)", xlab = " ")
+    axis(2)
+    abline(h = 0)
+    points(1, median(survey$CPOM.AFDM, na.rm = T), pch = 8, col = 2)
+    dev.copy(jpeg, "./ouput/plots/CPOM_Dens_Scatterplot.jpg")
+    dev.off()
+
+![scatter plot of CPOM AFDM](../output/plots/CPOM_Dens_Scatterplot.jpg)
+
+    par(las = 1)
     boxplot(survey$CPOM.AFDM, ylab = "CPOM Density (g AFDM/m^2)", col = 8)
     dev.copy(png, "./output/plots/CPOM_Dens_Boxplot.png")
     dev.off()
@@ -89,6 +99,23 @@ $WL
   5.981  10.930  24.740 147.800 234.000 526.600      11 
 
 ~~~~
+
+    par(las = 1, cex = 1)
+    plot(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"], pch = 19, xlim = c(0, 5), ylim = c(0, 1200), axes = F, xlab = " ", ylab = expression(paste("CPOM Density (g AFDM m"^{-2}, ")")))
+    points(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"])
+    points(jitter(rep(2, length(survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"], pch = 19)
+    points(jitter(rep(2, length(survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "open"])
+    points(jitter(rep(3, length(survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "littoral"])), 2), survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "littoral"], pch = 19)
+    points(jitter(rep(3, length(survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"])
+       points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"], pch = 19)
+    points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"])
+    axis(1, at = c(0, 1, 2, 3, 4, 5), labels = c(" ", "Daulton", "Lancer Park", "Woodland Ct.", "Wilkes", " "), tick = T, cex.axis = 0.9)
+    axis(2)
+    legend(3, 1200, c("Littoral", "Open"), pch = c(19, 1))
+    dev.copy(jpeg, "./output/plots/CPOM_Dens_by_lake_scatter.jpg")
+    dev.off()
+
+![CPOM Density scatterplot by lake](../output/plots/CPOM_Dens_by_lake_scatter.jpg)
 
     par(las = 1)
     plot(CPOM.AFDM ~ as.factor(lake), data = survey, xlab = "Pond", ylab = "CPOM Density (g AFDM / m^2)", col = 8)
