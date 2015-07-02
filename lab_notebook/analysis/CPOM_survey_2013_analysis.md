@@ -1,17 +1,12 @@
 # Analysis of the CPOM Survey Data
 
-Metadata can be found at:
-  https://github.com/KennyPeanuts/pond_diversity_fcn/blob/master/lab_notebook_entries/data_analysis/code/CPOM_survey_2013_metadata.md
-
 ## Import Data
 
 ### Working Directory
 
-    /Volumes/NO NAME/working_files/current_research/pond_diversity_fcn/lab_notebook_entries/data_analysis
-
 ### Import
 
-    survey <- read.delim("./data/CPOM_survey_2013_calc.txt", header = T, stringsAsFactors = F)
+    survey <- read.delim("./data/CPOM_survey_2013_calc.csv", header = T, stringsAsFactors = F, sep = ",")
 
 ## Data Analysis
 
