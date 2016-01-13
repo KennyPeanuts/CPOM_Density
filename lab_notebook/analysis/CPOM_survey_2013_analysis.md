@@ -334,6 +334,15 @@ $WL
 
 ![Percent sediement organic matter (LOI 550) in the different ponds in 2013 survey](../output/plots/percOM_by_lake.png)
 
+    par(las = 1)
+    plot((sed.propOM * 100) ~ jitter(as.numeric(as.factor(lake)), 1), data = survey, ylim = c(0, 25), col = 1, xlab = "Pond", ylab = "Percent Sediment Organic Matter (LOI 550)", axes = F)
+    axis(2)
+    axis(1, c("DP", "LPP", "WC", "WL"), at = c(1, 2, 3, 4))
+    box()
+    dev.copy(png, "./output/plots/percOM_by_lake_pts.png")
+    dev.off()
+
+![Percent sediement organic matter (LOI 550) in the different ponds in 2013 survey](../output/plots/percOM_by_lake_pts.png)
 Percent sediement organic matter (LOI 550) in the different ponds in 2013 survey
 
     par(las = 1, mfcol = c(4, 1), mar = c(5, 10, 5, 10))
