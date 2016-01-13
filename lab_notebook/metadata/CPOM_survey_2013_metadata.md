@@ -6,6 +6,10 @@
 
 Kenneth Fortino, Leanna Tacik, Carly Martin
 
+### Modified by:
+
+* 13 Jan 2016 - KF - updated methods to include the fact that wood was removed
+
 ### Collected on: 
 
 Late Winter - Summer 2013
@@ -37,7 +41,7 @@ The samples were collected from each lake using an Ekman dredge and placed into 
 
 The remaining sediments were then passed through a 250 um mesh in the field.  The material retained by the mesh was preserved in 70% ethanol and taken back to the lab.  
 
-The preserved material was passed through a 1 mm sieve to separate the coarse and fine fractions.  Any material retained buy the sieve (coarse) was dried at 50 dC and weighed.
+The preserved material was passed through a 1 mm sieve to separate the coarse and fine fractions. Any obvious wood was removed and dried in a separate bag from the leaf litter.  The non-wood material retained buy the sieve (coarse) was dried at 50 dC and weighed.
 
 #### Lab Processing
 
