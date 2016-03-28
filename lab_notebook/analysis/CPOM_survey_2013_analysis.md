@@ -91,7 +91,7 @@ There is potentially a bias introduced by the lakes because most of the samples 
 
 ~~~~
 
-> tapply(survey$CPOM.AFDM, survey$lake, length)
+ tapply(survey$CPOM.AFDM, survey$lake, length)
  DP LPP  WC  WL 
  12   6  12  24 
 >
@@ -122,19 +122,19 @@ $WL
 
 ~~~~
 
-    par(las = 1)
-    plot(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"], pch = 19, cex = 1.5, xlim = c(0, 5), ylim = c(0, 1200), axes = F, xlab = " ", ylab = expression(paste("CPOM Density (g AFDM m"^{-2}, ")")))
-    points(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"], cex = 1.5)
-    points(jitter(rep(2, length(survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"], pch = 19, cex = 1.5)
-    points(jitter(rep(2, length(survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "open"], cex = 1.5)
-    points(jitter(rep(3, length(survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "littoral"])), 2), survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "littoral"], pch = 19, cex =1.5)
-    points(jitter(rep(3, length(survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"], cex = 1.5)
-       points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"], pch = 19, cex = 1.5)
-    points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"], cex = 1.5)
-    axis(1, at = c(1, 2, 3, 4), labels = c("Daulton", "Lancer Park", "Woodland", "Wilkes"), tick = T, cex.axis = 0.9)
-    axis(2)
-    box()
-    legend(3, 1200, c("Littoral", "Open"), pch = c(19, 1))
+    par(las = 1, mar = c(5, 5, 5, 5))
+    plot(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"]/1000, pch = 19, cex = 1.5, cex.lab = 1.5, xlim = c(0.5, 4.5), ylim = c(0, 1.2), axes = F, xlab = " ", ylab = expression(paste("CPOM Density (kg AFDM m"^{-2}, ")")))
+    points(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"]/1000, cex = 1.5)
+    points(jitter(rep(2, length(survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"]/1000, pch = 19, cex = 1.5)
+    points(jitter(rep(2, length(survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "open"]/1000, cex = 1.5)
+    points(jitter(rep(3, length(survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "littoral"])), 2), survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "littoral"]/1000, pch = 19, cex =1.5)
+    points(jitter(rep(3, length(survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"]/1000, cex = 1.5)
+       points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"]/1000, pch = 19, cex = 1.5)
+    points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"]/1000, cex = 1.5)
+    axis(1, at = c(1, 2, 3, 4), labels = c("Daulton", "Lancer Park", "Woodland", "Wilkes"), tick = T, cex.axis = 1.3)
+    axis(2, cex.axis = 1.2)
+    box(lwd = 5)
+    legend(3, 1.2, c("Littoral  ", "Open  "), pch = c(19, 1))
     dev.copy(jpeg, "./output/plots/CPOM_Dens_by_lake_scatter.jpg")
     dev.off()
 
