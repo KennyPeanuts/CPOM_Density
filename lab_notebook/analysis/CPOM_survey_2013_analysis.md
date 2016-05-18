@@ -122,7 +122,7 @@ $WL
 
 ~~~~
 
-    par(las = 1, mar = c(5, 5, 5, 5))
+    par(las = 1, mar = c(5, 6, 3, 3))
     plot(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"]/1000, pch = 19, cex = 1.5, cex.lab = 1.2, xlim = c(0.5, 4.5), ylim = c(0, 1.2), axes = F, xlab = " ", ylab = expression(paste("Leaf Litter Density (kg AFDM m"^{-2}, ")")))
     points(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"]/1000, cex = 1.5)
     points(jitter(rep(2, length(survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "LPP" & survey$location == "littoral"]/1000, pch = 19, cex = 1.5)
@@ -133,7 +133,7 @@ $WL
     points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"]/1000, cex = 1.5)
     axis(1, at = c(1, 2, 3, 4), labels = c("Daulton", "Lancer Pk.", "Woodland", "Wilkes"), tick = T, cex.axis = 0.8)
     axis(2, cex.axis = 1.2)
-    box(lwd = 5)
+    box(lwd = 1)
     legend(3, 1.2, c("Littoral  ", "Open  "), pch = c(19, 1))
     dev.copy(jpeg, "./output/plots/CPOM_Dens_by_lake_scatter.jpg")
     dev.off()
@@ -410,14 +410,14 @@ Overall there is not a big difference between the littoral and open locations th
 
 _Percent sediement organic matter (LOI 550) plotted against CPOM (g AFDM/m^2) in open and littoral regions in 2013 survey_
 
-    par(las = 1)
-    plot((sed.propOM * 100) ~ log(CPOM.AFDM), data = survey, subset = location == "littoral", xlim = c(0, 7),   ylim = c(0, 25), pch = 16, ylab = "Percent Sediment Organic Matter (LOI 550)", xlab = "ln CPOM Density (g AFDM/m^2)")
-    points((sed.propOM * 100) ~ log(CPOM.AFDM), data = survey, subset = location == "open")
-    legend(-3, 25, c("littoral", "open"), pch = c(16, 1))
-    dev.copy(png, "./output/plots/percOM_by_lnCPOM.png")
+    par(las = 1, mar = c(5, 6, 3, 3))
+    plot((sed.propOM * 100) ~ log(CPOM.AFDM), data = survey, subset = location == "littoral", xlim = c(0, 7),   ylim = c(0, 25), pch = 19, ylab = "Percent Sediment Organic Matter (LOI 550)", xlab = expression(paste("ln Leaf Litter Density (g AFDM m"^{-2}, ")")), cex = 1.5, cex.axis = 1.2, cex.lab = 1.2)
+    points((sed.propOM * 100) ~ log(CPOM.AFDM), data = survey, subset = location == "open", cex = 1.5)
+    legend(5, 25, c("littoral", "open"), pch = c(19, 1))
+    dev.copy(jpeg, "./output/plots/percOM_by_lnCPOM.jpg")
     dev.off()
 
-![Percent sediement organic matter (LOI 550) plotted against CPOM (g AFDM/m^2) in open and littoral regions in 2013 survey](../output/plots/percOM_by_lnCPOM.png)
+![Percent sediement organic matter (LOI 550) plotted against CPOM (g AFDM/m^2) in open and littoral regions in 2013 survey](../output/plots/percOM_by_lnCPOM.jpg)
 
 _Percent sediement organic matter (LOI 550) plotted against ln transformed CPOM (ln g AFDM/m^2) in open and littoral regions in 2013 survey_
 
