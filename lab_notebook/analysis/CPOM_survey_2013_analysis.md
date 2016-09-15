@@ -1,5 +1,9 @@
 # Analysis of the CPOM Survey Data
 
+## Metadata
+
+* file creation date unknown
+
 ## Import Data
 
 ### Working Directory
@@ -101,24 +105,25 @@ There is potentially a bias introduced by the lakes because most of the samples 
 #### Density of CPOM among lakes
 
     tapply(survey$CPOM.AFDM, survey$lake, summary)
+    tapply(survey$CPOM.AFDM, survey$lake, sd, na.rm = T)
 
 ~~~~
 
 $DP
-    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-   5.937   16.420   37.450  175.400   59.300 1067.000 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. SD
+   5.937   16.420   37.450  175.400   59.300 1067.000 343.5094
 
 $LPP
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  55.81  112.50  220.60  398.70  534.70 1179.00 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. SD
+  55.81  112.50  220.60  398.70  534.70 1179.00 435.8988
 
 $WC
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NAs 
-  3.436   8.144  10.740  36.000  40.210 195.800       1 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.  SD           NAs 
+  3.436   8.144  10.740  36.000  40.210 195.800  55.37966     1 
 
 $WL
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NAs 
-  5.981  10.930  24.740 147.800 234.000 526.600      11 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. SD            NAs 
+  5.981  10.930  24.740 147.800 234.000 526.600 194.05770     11 
 
 ~~~~
 
@@ -209,16 +214,18 @@ The ANOVA with ln transformation shows a significant model and Tukeys HSD shows 
 #### Comparison of the open and littoral habitats.
 
     tapply(survey$CPOM.AFDM, survey$location, summary)
+    tapply(survey$CPOM.AFDM, survey$location, sd, na.rm = T)
+    
 
 ~~~~
 
 $littoral
-    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NAs 
-   9.712   44.070  112.600  283.100  449.200 1179.000        2 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. SD          NAs  
+   9.712   44.070  112.600  283.100  449.200 1179.000 346.92397   2 
 
 $open
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NAs 
-  3.436   7.363  10.830  29.310  26.570 214.900      10 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.   SD         NAs 
+  3.436   7.363  10.830  29.310  26.570 214.900   47.92569   10 
 
 ~~~~
 
@@ -306,25 +313,50 @@ Overall the sediment organic matter ranges from between 8 and 13% but there is a
 ##### Variation in percent OM by lake
 
     tapply(survey$sed.propOM * 100, survey$lake, summary)
+    tapply(survey$sed.propOM * 100, survey$lake, sd, na.rm = T)
 
 ~~~~
 
 $DP
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NAs 
-  2.363  10.800  20.710  15.830  21.230  22.300   6.000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.   SD           NAs 
+  2.363  10.800  20.710  15.830  21.230  22.300   8.597525     6.000 
 
 $LPP
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  11.12   11.58   12.38   12.72   13.50   15.27 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.  SD
+  11.12   11.58   12.38   12.72   13.50   15.27  1.567903
 
 $WC
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  10.08   10.74   11.60   12.26   13.05   17.73 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.  SD
+  10.08   10.74   11.60   12.26   13.05   17.73  2.115659
 
 $WL
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NAs 
- 0.7268  2.4520  8.0530  6.1660  8.8560 10.1700  7.0000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.  SD        NAs 
+ 0.7268  2.4520  8.0530  6.1660  8.8560 10.1700  3.645933  7.0000 
 
+
+~~~~
+
+###### Test of Sediment OM in lakes
+ 
+    lake.loi.aov <- aov(sed.propOM ~ lake, data = survey)
+    summary(lake.loi.aov)
+    TukeyHSD(lake.loi.aov)
+
+~~~~
+ANOVA of LOI by lake 
+ 
+            Df Sum Sq Mean Sq F value  Pr(>F)   
+lake         3  9.633   3.211   6.664 0.00104 **
+Residuals   37 17.829   0.482     
+
+$lake
+              diff        lwr        upr     p adj
+LPP-DP  0.01917956 -1.0588048  1.0971640 0.9999599
+WC-DP  -0.02361644 -0.9571783  0.9099454 0.9998848
+WL-DP  -0.99049705 -1.8771159 -0.1038782 0.0235015
+WC-LPP -0.04279601 -0.9763579  0.8907659 0.9993174
+WL-LPP -1.00967661 -1.8962954 -0.1230578 0.0203197
+WL-WC  -0.96688060 -1.6708553 -0.2629060 0.0037933
 
 ~~~~
 
@@ -376,6 +408,22 @@ $open
 
 ~~~~
 
+###### Test of Sediment OM in lakes
+ 
+    loc.loi.aov <- aov(sed.propOM ~ location, data = survey)
+    summary(loc.loi.aov)
+
+~~~~
+# ANOVA of the LOI by location
+ 
+> summary(loc.loi.aov)
+            Df  Sum Sq  Mean Sq F value Pr(>F)
+location     1 0.00289 0.002889   0.963  0.333
+Residuals   39 0.11704 0.003001               
+13 observations deleted due to missingness
+
+~~~~
+    
     par(las = 1)
     plot(sed.propOM * 100 ~ as.factor(location), data = survey, col = 8)
     dev.copy(png, "./output/plots/percOM_by_location.png")
@@ -423,3 +471,27 @@ _Percent sediement organic matter (LOI 550) plotted against ln transformed CPOM 
 
 
 There is no relationship between CPOM Density and sediment organic matter content.
+
+    summary(lm(sed.propOM ~ CPOM.AFDM, data = survey)) 
+
+~~~~
+Regression of Sediment percent OM and Leaf Litter Density
+
+Call:
+lm(formula = sed.propOM ~ CPOM.AFDM, data = survey)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.098768 -0.018620 -0.001738  0.019615  0.109888 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.134e-01  1.148e-02   9.881 6.05e-11 ***
+CPOM.AFDM   -1.514e-05  4.089e-05  -0.370    0.714    
+
+Residual standard error: 0.05686 on 30 degrees of freedom
+  (22 observations deleted due to missingness)
+Multiple R-squared:  0.004549, Adjusted R-squared:  -0.02863 
+F-statistic: 0.1371 on 1 and 30 DF,  p-value: 0.7138
+
+~~~~
