@@ -4,6 +4,10 @@
 
 * file creation date unknown
 
+### Modified
+
+* 19 Sept 2016 - KF - created publication figure
+
 ## Import Data
 
 ### Working Directory
@@ -127,6 +131,8 @@ $WL
 
 ~~~~
 
+##### Plot of CPOM Density by lake
+
     par(las = 1, mar = c(5, 6, 3, 3))
     plot(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "littoral"]/1000, pch = 19, cex = 1.5, cex.lab = 1.2, xlim = c(0.5, 4.5), ylim = c(0, 1.2), axes = F, xlab = " ", ylab = expression(paste("Leaf Litter Density (kg AFDM m"^{-2}, ")")))
     points(jitter(rep(1, length(survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"])), 5), survey$CPOM.AFDM[survey$lake == "DP" & survey$location == "open"]/1000, cex = 1.5)
@@ -136,7 +142,7 @@ $WL
     points(jitter(rep(3, length(survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WC" & survey$location == "open"]/1000, cex = 1.5)
        points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "littoral"]/1000, pch = 19, cex = 1.5)
     points(jitter(rep(4, length(survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"])), 2), survey$CPOM.AFDM[survey$lake == "WL" & survey$location == "open"]/1000, cex = 1.5)
-    axis(1, at = c(1, 2, 3, 4), labels = c("Daulton", "Lancer Pk.", "Woodland", "Wilkes"), tick = T, cex.axis = 0.8)
+    axis(1, at = c(1, 2, 3, 4), labels = c("Daulton", "Lancer Pk.", "Woodland", "Wilck's"), tick = T, cex.axis = 0.8)
     axis(2, cex.axis = 1.2)
     box(lwd = 1)
     legend(3, 1.2, c("Littoral  ", "Open  "), pch = c(19, 1))
@@ -144,6 +150,8 @@ $WL
     dev.off()
 
 ![CPOM Density scatterplot by lake](../output/plots/CPOM_Dens_by_lake_scatter.jpg)
+
+
 
     par(las = 1)
     plot(CPOM.AFDM ~ as.factor(lake), data = survey, xlab = "Pond", ylab = "CPOM Density (g AFDM / m^2)", col = 8)
