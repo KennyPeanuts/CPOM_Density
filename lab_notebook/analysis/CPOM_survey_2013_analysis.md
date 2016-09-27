@@ -6,7 +6,8 @@
 
 ### Modified
 
-* 19 Sept 2016 - KF - created publication figure
+* 19 Sept 2016 - KF - created publication figure of Density by pond
+* 27 Sept 2016 - KF - created publication figure of LOI by pond and LOI by CPOM Density
 
 ## Import Data
 
@@ -503,3 +504,26 @@ Multiple R-squared:  0.004549, Adjusted R-squared:  -0.02863
 F-statistic: 0.1371 on 1 and 30 DF,  p-value: 0.7138
 
 ~~~~
+
+## Plot for Manuscript
+
+    par(las = 1, mar = c(2, 8, 2, 8), mfcol = c(2, 1))
+    #plot of LOI by lake
+    plot(sed.propOM * 100 ~ jitter(as.numeric(as.factor(lake)), 0.5), data = survey, subset = location == "littoral", pch = 19, axes = F, ylab = "Sediment Organic Matter (%)", xlab = " ", ylim = c(0, 25), xlim = c(0.5, 4.5), cex.lab = 0.8)
+    points(sed.propOM * 100 ~ jitter(as.numeric(as.factor(lake)), 0.5), data = survey, subset = location == "open", pch = 1)
+    axis(2)
+    axis(1, c("Daulton", "Lancer Pk.", "Woodland", "Wilcke's"), at = c(1, 2, 3, 4), cex.axis = 0.65)
+    box()
+    legend(3.5, 25, c("Littoral", "Open"), pch = c(19, 1), cex = 0.8)
+    text(0.75, 24, "A", cex = 1)
+    #plot of LOI by CPOM Density
+    # make x variable
+    CPOM.Dens.kg <- survey$CPOM.AFDM/1000
+    par(mar = c(4, 8, 0.6, 8))
+    plot(sed.propOM * 100 ~ CPOM.Dens.kg, data = survey, subset = location == "littoral", pch = 19, ylab = "Sediment Organic Matter (%)", xlab = expression(paste("Leaf Litter Density (kg AFDM m"^{-2}, ")")), ylim = c(0, 25), xlim = c(0, 1.2), cex.lab = 0.8)
+    points(sed.propOM * 100 ~ CPOM.Dens.kg, data = survey, subset = location == "open", pch = 1)
+    text(0.1, 24, "B", cex = 1)
+    dev.copy(jpeg, "./output/plots/LOI_survey.jpg")
+    dev.off()
+
+![LOI Survey](../output/plots/LOI_survey.jpg)
