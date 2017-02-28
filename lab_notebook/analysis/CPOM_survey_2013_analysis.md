@@ -286,16 +286,18 @@ Residuals           40 63.973   1.599
 
 The results show that there is significantly more CPOM in the littoral locations than in the open locations. 
 
+
 #### Relationship between CPOM and sediment %OM
 
 ##### Variation in %OM 
 
     summary(survey$sed.propOM)
+    sd(survey$sed.propOM, na.rm = T)
 
 ~~~~
 
-     Min.   1st Qu.    Median      Mean   3rd Qu.      Max.      NAs 
- 0.007268  0.080530  0.106700  0.103200  0.127700  0.223000 13.000000
+ Min.      1st Qu.   Median    Mean      3rd Qu.    Max.  SD      NAs 
+ 0.007268  0.080530  0.106700  0.103200  0.127700  0.2230 0.05475 13
 
 ~~~~
 
