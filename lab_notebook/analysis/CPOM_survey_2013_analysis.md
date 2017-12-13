@@ -514,7 +514,7 @@ F-statistic: 0.1371 on 1 and 30 DF,  p-value: 0.7138
     plot(sed.propOM * 100 ~ jitter(as.numeric(as.factor(lake)), 0.5), data = survey, subset = location == "littoral", pch = 19, axes = F, ylab = "Sediment Organic Matter (%)", xlab = " ", ylim = c(0, 25), xlim = c(0.5, 4.5), cex.lab = 0.8)
     points(sed.propOM * 100 ~ jitter(as.numeric(as.factor(lake)), 0.5), data = survey, subset = location == "open", pch = 1)
     axis(2)
-    axis(1, c("Daulton", "Lancer Pk.", "Woodland", "Wilcke's"), at = c(1, 2, 3, 4), cex.axis = 0.65)
+    axis(1, c("Daulton", "Lancer Pk.", "Woodland", "Wilck's"), at = c(1, 2, 3, 4), cex.axis = 0.65)
     box()
     legend(3.5, 25, c("Littoral", "Open"), pch = c(19, 1), cex = 0.8)
     text(0.75, 24, "A", cex = 1)
@@ -529,3 +529,63 @@ F-statistic: 0.1371 on 1 and 30 DF,  p-value: 0.7138
     dev.off()
 
 ![LOI Survey](../output/plots/LOI_survey.jpg)
+
+# Reanalysis of the data in response to comments on from reviewers 
+
+Following the review of the manuscript for Aquatic Ecology, I am redoing the analysis to eliminate the pseudoreplication in the comparison of the ponds.
+
+## Average the CPOM AFDM by lake per sampling date
+
+## Create variables of the mean littoral and open CPOM AFDM in each lake
+    littoral.AFDM <- as.numeric(tapply(survey$CPOM.AFDM[survey$lake != "WL" & survey$location == "littoral"], survey$lake[survey$lake != "WL" & survey$location == "littoral"], mean, na.rm = T))
+    
+    open.AFDM <- as.numeric(tapply(survey$CPOM.AFDM[survey$lake != "WL" & survey$location == "open"], survey$lake[survey$lake != "WL" & survey$location == "open"], mean, na.rm = T))
+    
+## Create variables of the mean littoral and open perc sediment OM in each lake
+    littoral.sed.propOM <- as.numeric(tapply(survey$sed.propOM[survey$lake != "WL" & survey$location == "littoral"], survey$lake[survey$lake != "WL" & survey$location == "littoral"], mean, na.rm = T))
+    
+    open.sed.propOM <- as.numeric(tapply(survey$sed.propOM[survey$lake != "WL" & survey$location == "open"], survey$lake[survey$lake != "WL" & survey$location == "open"], mean, na.rm = T))
+
+## Create a data.frame for the analysis
+
+    lake <- rep(c("DP", "LPP", "WC"), 2)
+    location <- c(rep("littoral", 3), rep("open", 3))
+    julian <- rep(c(133, 79, 134), 2)
+    AFDM <- c(littoral.AFDM, open.AFDM)
+    sed.propOM <- c(littoral.sed.propOM, open.sed.propOM)
+
+    survey.mean <- data.frame(lake, location, julian, AFDM, sed.propOM)
+    
+## Analyze the difference between the open and littoral habitats
+
+In these models I used location as the main factor and lake as a blocking factor and julian date as a covariate.
+
+    anova(lm(AFDM ~ location + julian + lake, data = survey.mean))
+    
+~~~~
+
+Analysis of Variance Table
+
+Response: AFDM
+          Df Sum Sq Mean Sq F value Pr(>F)
+location   1 147766  147766  4.5695 0.1660
+julian     1 114897  114897  3.5530 0.2001
+lake       1  17296   17296  0.5348 0.5407
+Residuals  2  64675   32338            
+
+~~~~
+
+    anova(lm(sed.propOM ~ location + julian + lake, data = survey.mean))
+
+~~~~
+
+Analysis of Variance Table
+
+Response: sed.propOM
+          Df     Sum Sq    Mean Sq  F value  Pr(>F)  
+location   1 0.00001576 0.00001576   9.9003 0.19590  
+julian     1 0.00006950 0.00006950  43.6523 0.09563 .
+lake       1 0.00113923 0.00113923 715.5099 0.02379 *
+Residuals  1 0.00000159 0.00000159    
+
+~~~~
