@@ -61,15 +61,16 @@
     with(survey, tapply(depth, location, summary))
 
 ################################
-# Depth of the samples in m
+    # Depth of the samples in m
 
-$littoral
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   0.60    1.00    1.20    1.14    1.35    1.50 
+    $littoral
+    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    0.60    1.00    1.20    1.14    1.35    1.50 
 
-$open
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  1.000   1.400   1.900   1.987   2.650   3.200 
+    $open
+    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    1.000   1.400   1.900   1.987   2.650   3.200 
+
 ###############################
 
 #### Count number of samples
@@ -78,8 +79,8 @@ $open
     
 #########################################
     
- DP LPP  WC   
- 12   6  12   
+    DP   LPP  WC   
+    12   6    12   
 
 ########################################
 
@@ -89,10 +90,10 @@ $open
     sd(survey$CPOM.AFDM, na.rm = T)
     
 ########################################
-CPOM Standing Stock g m2
+    # CPOM Standing Stock g m2
     
-Min.    1st Qu.   Median     Mean      3rd Qu.  Max.      SD        NAs 
-3.436   10.740    43.008     168.742   82.234   1179.309  315.6817  1  
+    Min.    1st Qu.   Median     Mean      3rd Qu.  Max.      SD        NAs 
+    3.436   10.740    43.008     168.742   82.234   1179.309  315.6817  1  
 
 ########################################
 
@@ -113,19 +114,19 @@ The data show that for all of the samples the Standing Stock of CPOM is mainly u
     tapply(survey$CPOM.AFDM, survey$lake, sd, na.rm = T)
 
 ########################################
-CPOM Standing Stock g m2
+    # CPOM Standing Stock g m2
     
-$DP
-Min.   1st Qu.  Median  Mean     3rd Qu.  Max.      SD
-5.937  16.422   37.445  175.439  59.304   1067.398  343.50936
+    $DP
+    Min.   1st Qu.  Median  Mean     3rd Qu.  Max.      SD
+    5.937  16.422   37.445  175.439  59.304   1067.398  343.50936
 
-$LPP
-Min.   1st Qu.  Median  Mean    3rd Qu. Max.     SD 
-55.81  112.50   220.63  398.70  534.69  1179.31  435.89879
+    $LPP
+    Min.   1st Qu.  Median  Mean    3rd Qu. Max.     SD 
+    55.81  112.50   220.63  398.70  534.69  1179.31  435.89879
 
-$WC
-Min.   1st Qu.  Median    Mean    3rd Qu.    Max.     SD           NAs 
-3.436  8.144    10.740    36.003  40.207     195.837  55.37966     1 
+    $WC
+    Min.   1st Qu.  Median    Mean    3rd Qu.    Max.     SD           NAs 
+    3.436  8.144    10.740    36.003  40.207     195.837  55.37966     1 
  
 ########################################
 
@@ -192,13 +193,13 @@ Min.   1st Qu.  Median    Mean    3rd Qu.    Max.     SD           NAs
     
 
 ########################################
-$littoral
-Min.    1st Qu.   Median     Mean     3rd Qu.     Max.      SD             NAs 
-9.712   47.470    66.947     313.658  534.689     1179.309  409.56255      1 
+    $littoral
+    Min.    1st Qu.   Median     Mean     3rd Qu.     Max.      SD             NAs 
+    9.712   47.470    66.947     313.658  534.689     1179.309  409.56255      1 
 
-$open
-Min.    1st Qu.  Median    Mean    3rd Qu.    Max.     SD 
-3.436   7.255    15.920    33.487  26.653     214.938  54.30139 
+    $open
+    Min.    1st Qu.  Median    Mean    3rd Qu.    Max.     SD 
+    3.436   7.255    15.920    33.487  26.653     214.938  54.30139 
 
 ########################################
 
@@ -211,12 +212,11 @@ Min.    1st Qu.  Median    Mean    3rd Qu.    Max.     SD
     sd(survey$sed.propOM, na.rm = T)
 
 ########################################
-# Sediment % OM 
+    # Sediment % OM 
     
-Min.      1st Qu.   Median    Mean      3rd Qu.    Max.     SD            NAs 
-0.02363   0.10983   0.12285   0.13270   0.14252    0.22303  0.0458906     6 
+    Min.      1st Qu.   Median    Mean      3rd Qu.    Max.     SD            NAs 
+    0.02363   0.10983   0.12285   0.13270   0.14252    0.22303  0.0458906     6 
  
-
 ########################################
 
    par(las = 1)
@@ -244,17 +244,18 @@ Frequency histogram percent sediment organic matter (LOI 550) in 2013 survey pon
     tapply(survey$sed.propOM * 100, survey$lake, sd, na.rm = T)
 
 ########################################
-$DP
-Min.   1st Qu.  Median    Mean    3rd Qu.    Max.    SD        NAs 
-2.363  10.797   20.710    15.830  21.227     22.303  8.597525  6 
 
-$LPP
-Min.   1st Qu.  Median    Mean    3rd Qu.    Max.    SD 
-11.12  11.58    12.38     12.72   13.50      15.27   1.567903
+    $DP
+    Min.   1st Qu.  Median    Mean    3rd Qu.    Max.    SD        NAs 
+    2.363  10.797   20.710    15.830  21.227     22.303  8.597525  6 
 
-$WC
-Min.    1st Qu.  Median    Mean    3rd Qu.    Max.    SD 
-10.08   10.74    11.60     12.26   13.05      17.73   2.115659 
+    $LPP
+    Min.   1st Qu.  Median    Mean    3rd Qu.    Max.    SD 
+    11.12  11.58    12.38     12.72   13.50      15.27   1.567903
+
+    $WC
+    Min.    1st Qu.  Median    Mean    3rd Qu.    Max.    SD 
+    10.08   10.74    11.60     12.26   13.05      17.73   2.115659 
 
 ########################################
 
@@ -297,13 +298,13 @@ There are differences in the way that sediment OM is distributed among the lakes
 
 ########################################
 
-$littoral
-Min.    1st Qu.  Median    Mean    3rd Qu.    Max.   SD         NAs 
-10.67   11.99    12.86     13.28   13.75      17.73  2.184280   6 
+    $littoral
+    Min.    1st Qu.  Median    Mean    3rd Qu.    Max.   SD         NAs 
+    10.67   11.99    12.86     13.28   13.75      17.73  2.184280   6 
 
-$open
-Min.   1st Qu.  Median    Mean    3rd Qu.    Max.    SD
-2.363  10.729   11.589    13.264  17.208     22.303  5.645463
+    $open
+    Min.   1st Qu.  Median    Mean    3rd Qu.    Max.    SD
+    2.363  10.729   11.589    13.264  17.208     22.303  5.645463
 
 ########################################
 
@@ -382,8 +383,6 @@ F-statistic: 0.1371 on 1 and 30 DF,  p-value: 0.7138
 
 ## Sediment Plots for Manuscript
 
-#
-
     jpeg("./output/plots/sedOM_by_lake.jpg", width = 6, height = 6, units = 'in', res = 1500)
     par(las = 1) # mar = c(2, 8, 2, 8), mfcol = c(2, 1))
     #plot of LOI by lake
@@ -446,14 +445,14 @@ In these models I used location as the main factor and lake as a blocking factor
     
 ########################################
 
-Analysis of Variance Table
+    Analysis of Variance Table
 
-Response: AFDM
-          Df Sum Sq Mean Sq F value Pr(>F)
-location   1 147766  147766  4.5695 0.1660
-julian     1 114897  114897  3.5530 0.2001
-lake       1  17296   17296  0.5348 0.5407
-Residuals  2  64675   32338            
+    Response: AFDM
+              Df Sum Sq Mean Sq F value Pr(>F)
+    location   1 147766  147766  4.5695 0.1660
+    julian     1 114897  114897  3.5530 0.2001
+    lake       1  17296   17296  0.5348 0.5407
+    Residuals  2  64675   32338            
 
 ########################################
 
@@ -461,13 +460,13 @@ Residuals  2  64675   32338
 
 ########################################
 
-Analysis of Variance Table
+    Analysis of Variance Table
 
-Response: sed.propOM
-          Df     Sum Sq    Mean Sq  F value  Pr(>F)  
-location   1 0.00001576 0.00001576   9.9003 0.19590  
-julian     1 0.00006950 0.00006950  43.6523 0.09563 .
-lake       1 0.00113923 0.00113923 715.5099 0.02379 *
-Residuals  1 0.00000159 0.00000159    
+    Response: sed.propOM
+              Df     Sum Sq    Mean Sq  F value  Pr(>F)  
+    location   1 0.00001576 0.00001576   9.9003 0.19590  
+    julian     1 0.00006950 0.00006950  43.6523 0.09563 .
+    lake       1 0.00113923 0.00113923 715.5099 0.02379 *
+    Residuals  1 0.00000159 0.00000159    
 
 ########################################
